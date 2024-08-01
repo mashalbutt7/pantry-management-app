@@ -1,9 +1,11 @@
 'use client'; // Ensure this file runs on the client side
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { collection, addDoc, updateDoc, doc, deleteDoc, onSnapshot } from 'firebase/firestore';
 import { TextField, Button, Box, Typography, List, ListItem, ListItemText, IconButton, Paper } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import { db } from './firebase'; // Ensure you have Firebase configuration
 
 export default function PantryForm() {
   const [itemName, setItemName] = useState('');
@@ -11,26 +13,33 @@ export default function PantryForm() {
   const [editingId, setEditingId] = useState(null); // To handle update
   const [pantryItems, setPantryItems] = useState([]);
 
-  const handleSubmit = (event) => {
+  useEffect(() => {
+    const unsubscribe = onSnapshot(collection(db, 'pantryItems'), (snapshot) => {
+      const items = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      setPantryItems(items);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    
+
     if (editingId !== null) {
       // Update existing item
-      setPantryItems((prevItems) =>
-        prevItems.map((item) =>
-          item.id === editingId
-            ? { ...item, name: itemName, quantity: Number(quantity) }
-            : item
-        )
-      );
+      const itemRef = doc(db, 'pantryItems', editingId);
+      await updateDoc(itemRef, {
+        name: itemName,
+        quantity: Number(quantity),
+      });
     } else {
       // Add new item
-      setPantryItems((prevItems) => [
-        ...prevItems,
-        { id: Date.now(), name: itemName, quantity: Number(quantity) },
-      ]);
+      await addDoc(collection(db, 'pantryItems'), {
+        name: itemName,
+        quantity: Number(quantity),
+      });
     }
-    
+
     setItemName('');
     setQuantity('');
     setEditingId(null);
@@ -42,8 +51,9 @@ export default function PantryForm() {
     setEditingId(id);
   };
 
-  const handleDelete = (id) => {
-    setPantryItems((prevItems) => prevItems.filter((item) => item.id !== id));
+  const handleDelete = async (id) => {
+    const itemRef = doc(db, 'pantryItems', id);
+    await deleteDoc(itemRef);
   };
 
   return (
@@ -53,8 +63,8 @@ export default function PantryForm() {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundImage: 'url(/pantry.png)', // Path to your image
-        backgroundSize: 'cover', // Cover the whole area
+        backgroundImage: 'url(/pantry.png)', 
+        backgroundSize: 'cover', 
         backgroundPosition: 'center',
       }}
     >
@@ -66,7 +76,7 @@ export default function PantryForm() {
           flexDirection: 'column',
           alignItems: 'center',
           p: 3,
-          bgcolor:'#f5f5dc',
+          bgcolor: '#f5f5dc',
           borderRadius: 1,
           boxShadow: 3,
           maxWidth: 400,
