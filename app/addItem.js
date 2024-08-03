@@ -1,10 +1,10 @@
-// components/AddItemPage.js
+
 'use client';
 
 import { useState } from 'react';
 import { collection, addDoc } from 'firebase/firestore';
 import { TextField, Button, Box, Typography, Paper } from '@mui/material';
-import { db } from '../firebase';
+import { db } from './firebase';
 
 export default function AddItemPage() {
   const [itemName, setItemName] = useState('');

@@ -1,11 +1,11 @@
-// components/UpdateItemPage.js
+
 'use client';
 
 import { useState, useEffect } from 'react';
 import { collection, updateDoc, doc, onSnapshot } from 'firebase/firestore';
 import { TextField, Button, Box, Typography, List, ListItem, ListItemText, IconButton, Paper } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
-import { db } from '../firebase';
+import { db } from './firebase';
 
 export default function UpdateItemPage() {
   const [itemName, setItemName] = useState('');
