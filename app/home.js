@@ -5,7 +5,7 @@ import { Box, Typography, Button } from '@mui/material';
 import AddItemPage from './addItem';
 import UpdateItemPage from './updateItem';
 import RemoveItemPage from './removeItem';
-//import InventorySummaryPage from './inventorySummary'; // Ensure this file exists
+import SearchFilterPage from './searchFilterPage'; // Ensure this file exists
 
 export default function HomePage() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -38,8 +38,8 @@ export default function HomePage() {
             <Button variant="contained" color="primary" onClick={() => setCurrentPage('remove-item')} sx={{ mt: 2 }}>
               Remove Item
             </Button>
-            <Button variant="contained" color="primary" onClick={() => setCurrentPage('inventory-summary')} sx={{ mt: 2 }}>
-              Inventory Summary
+            <Button variant="contained" color="primary" onClick={() => setCurrentPage('search-filter-page')} sx={{ mt: 2 }}>
+              Search Filter Page
             </Button>
           </Box>
         );
@@ -49,8 +49,8 @@ export default function HomePage() {
         return <UpdateItemPage />;
       case 'remove-item':
         return <RemoveItemPage />;
-    //  case 'inventory-summary':
-        return <InventorySummaryPage />;
+     case 'search-filter-page':
+        return <SearchFilterPage />;
       default:
         return (
           <Box
