@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Box, Typography, Button } from '@mui/material';
 import AddItemPage from './addItem';
 import UpdateItemPage from './updateItem';
-//import RemoveItemPage from './removeItem';
+import RemoveItemPage from './removeItem';
 //import InventorySummaryPage from './inventorySummary'; // Ensure this file exists
 
 export default function HomePage() {
@@ -47,7 +47,7 @@ export default function HomePage() {
         return <AddItemPage />;
       case 'update-item':
         return <UpdateItemPage />;
-     // case 'remove-item':
+      case 'remove-item':
         return <RemoveItemPage />;
     //  case 'inventory-summary':
         return <InventorySummaryPage />;
