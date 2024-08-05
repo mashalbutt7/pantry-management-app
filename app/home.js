@@ -1,9 +1,8 @@
-// app/home.js
 'use client';
 
 import { Box, Typography, Button } from '@mui/material';
 
-export default function HomePage({ setCurrentPage }) {
+export default function HomePage({ setCurrentPage, handleLogout }) {
   return (
     <Box
       sx={{
@@ -31,6 +30,9 @@ export default function HomePage({ setCurrentPage }) {
       </Button>
       <Button variant="contained" color="primary" onClick={() => setCurrentPage('search-filter-page')} sx={{ mt: 2 }}>
         Search Filter Page
+      </Button>
+      <Button variant="contained" color="secondary" onClick={handleLogout} sx={{ mt: 2 }}>
+        Logout
       </Button>
     </Box>
   );

@@ -1,4 +1,4 @@
-// app/signup.js
+// signup.js
 'use client';
 
 import { useState } from 'react';
