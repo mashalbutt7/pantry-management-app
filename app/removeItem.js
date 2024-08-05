@@ -1,13 +1,12 @@
-// components/RemoveItemPage.js
 'use client';
 
 import { useState, useEffect } from 'react';
 import { collection, deleteDoc, doc, onSnapshot } from 'firebase/firestore';
-import { Box, Typography, List, ListItem, ListItemText, IconButton, Paper } from '@mui/material';
+import { Box, Typography, List, ListItem, ListItemText, IconButton, Paper, Button } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { db } from './firebase';
 
-export default function RemoveItemPage() {
+export default function RemoveItemPage({ setCurrentPage }) {
   const [pantryItems, setPantryItems] = useState([]);
 
   useEffect(() => {
@@ -29,14 +28,27 @@ export default function RemoveItemPage() {
       sx={{
         minHeight: '100vh',
         display: 'flex',
-        justifyContent: 'center',
+        flexDirection: 'column',
         alignItems: 'center',
+        justifyContent: 'center',
         backgroundImage: 'url(/pantry.png)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
+        position: 'relative',
       }}
     >
-      <Paper sx={{ mt: 4, p: 2, width: '100%', maxWidth: 600 }}>
+      <Button
+        variant="outlined"
+        onClick={() => setCurrentPage('home')}
+        sx={{
+          position: 'absolute',
+          top: 16,
+          left: 16,
+        }}
+      >
+        Back
+      </Button>
+      <Paper sx={{ p: 2, width: '100%', maxWidth: 600, zIndex: 1 }}>
         <Typography variant="h6" gutterBottom>
           Pantry Items
         </Typography>

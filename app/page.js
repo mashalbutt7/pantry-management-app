@@ -1,4 +1,3 @@
-// app/page.js
 'use client';
 
 import { useState } from 'react';
@@ -27,11 +26,11 @@ export default function MainPage() {
     if (!isAuthenticated) {
       switch (currentPage) {
         case 'login':
-          return <LoginPage onLoginSuccess={handleLoginSuccess} setCurrentPage={setCurrentPage} />;
+          return <LoginPage onLoginSuccess={handleLoginSuccess} />;
         case 'sign-up':
-          return <SignUpPage onSignUpSuccess={handleSignUpSuccess} setCurrentPage={setCurrentPage} />;
+          return <SignUpPage onSignUpSuccess={handleSignUpSuccess} />;
         default:
-          return <LoginPage onLoginSuccess={handleLoginSuccess} setCurrentPage={setCurrentPage} />;
+          return <LoginPage onLoginSuccess={handleLoginSuccess} />;
       }
     }
 
@@ -39,13 +38,13 @@ export default function MainPage() {
       case 'home':
         return <HomePage setCurrentPage={setCurrentPage} />;
       case 'add-item':
-        return <AddItemPage />;
+        return <AddItemPage setCurrentPage={setCurrentPage} />;
       case 'update-item':
-        return <UpdateItemPage />;
+        return <UpdateItemPage setCurrentPage={setCurrentPage} />;
       case 'remove-item':
-        return <RemoveItemPage />;
+        return <RemoveItemPage setCurrentPage={setCurrentPage} />;
       case 'search-filter-page':
-        return <SearchFilterPage />;
+        return <SearchFilterPage setCurrentPage={setCurrentPage} />;
       default:
         return <HomePage setCurrentPage={setCurrentPage} />;
     }

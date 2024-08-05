@@ -17,7 +17,7 @@ export default function HomePage({ setCurrentPage }) {
         backgroundPosition: 'center',
       }}
     >
-      <Typography variant="h3" gutterBottom>
+      <Typography variant="h3" color={'whitesmoke'} gutterBottom>
         Pantry Management Dashboard
       </Typography>
       <Button variant="contained" color="primary" onClick={() => setCurrentPage('add-item')}>

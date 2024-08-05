@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -7,7 +6,7 @@ import { TextField, Button, Box, Typography, List, ListItem, ListItemText, IconB
 import EditIcon from '@mui/icons-material/Edit';
 import { db } from './firebase';
 
-export default function UpdateItemPage() {
+export default function UpdateItemPage({ setCurrentPage }) {
   const [itemName, setItemName] = useState('');
   const [quantity, setQuantity] = useState('');
   const [editingId, setEditingId] = useState(null);
@@ -49,13 +48,26 @@ export default function UpdateItemPage() {
       sx={{
         minHeight: '100vh',
         display: 'flex',
-        justifyContent: 'center',
+        flexDirection: 'column',
         alignItems: 'center',
+        justifyContent: 'center',
         backgroundImage: 'url(/pantry.png)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
+        position: 'relative',
       }}
     >
+      <Button
+        variant="outlined"
+        onClick={() => setCurrentPage('home')}
+        sx={{
+          position: 'absolute',
+          top: 16,
+          left: 16,
+        }}
+      >
+        Back
+      </Button>
       <Box
         component="form"
         onSubmit={handleSubmit}
@@ -69,6 +81,7 @@ export default function UpdateItemPage() {
           boxShadow: 3,
           maxWidth: 400,
           width: '100%',
+          zIndex: 1,
         }}
       >
         <Typography variant="h6" gutterBottom>
@@ -100,7 +113,7 @@ export default function UpdateItemPage() {
             </Button>
           </>
         )}
-        <Paper sx={{ mt: 4, p: 2, width: '100%' }}>
+        <Paper sx={{ mt: 4, p: 2, width: '100%', maxWidth: 600, zIndex: 1 }}>
           <Typography variant="h6" gutterBottom>
             Pantry Items
           </Typography>
