@@ -3,14 +3,14 @@
 
 import { useState } from 'react';
 import { TextField, Button, Box, Typography, Paper } from '@mui/material';
-import { auth, db } from './firebase'; // Ensure this path is correct
+import { auth, db } from './firebase'; 
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 
 export default function SignUpPage({ onSignUpSuccess, setCurrentPage }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [displayName, setDisplayName] = useState(''); // Optional
+  const [displayName, setDisplayName] = useState(''); 
   const [error, setError] = useState('');
 
   const handleSignUp = async () => {
@@ -51,7 +51,7 @@ export default function SignUpPage({ onSignUpSuccess, setCurrentPage }) {
           Sign Up
         </Typography>
         <TextField
-          label="Display Name" // Optional
+          label="Display Name" 
           value={displayName}
           onChange={(e) => setDisplayName(e.target.value)}
           fullWidth

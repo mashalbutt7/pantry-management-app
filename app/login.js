@@ -1,10 +1,10 @@
-// login.js
+
 'use client';
 
 import { useState } from 'react';
 import { TextField, Button, Box, Typography, Paper } from '@mui/material';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from './firebase'; // Import your Firebase auth configuration
+import { auth } from './firebase'; 
 
 export default function LoginPage({ onLoginSuccess, setCurrentPage }) {
   const [email, setEmail] = useState('');

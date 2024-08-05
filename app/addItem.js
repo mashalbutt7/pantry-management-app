@@ -105,7 +105,7 @@ export default function AddItemPage({ setCurrentPage }) {
           boxShadow: 3,
           maxWidth: 400,
           width: '100%',
-          zIndex: 1, // Ensure form is above background image
+          zIndex: 1, 
         }}
       >
         <Typography variant="h6" gutterBottom>
